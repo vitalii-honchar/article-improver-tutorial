@@ -40,7 +40,7 @@ Issues = "https://github.com/unknown/article-improver/issues"
 Source = "https://github.com/unknown/article-improver"
 
 [project.scripts]
-article-improver = "article_improver.cli:article_improver"
+article-improver = "article_improver.main:app"
 
 [tool.hatch.version]
 path = "src/article_improver/__about__.py"
