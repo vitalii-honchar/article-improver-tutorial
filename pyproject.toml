@@ -25,7 +25,13 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "click",
+  "openai",
+  "loguru",
+  "tiktoken",
+  "typer",
+  "pymupdf",
+  "pyyaml",
+  "rich"
 ]
 
 [project.urls]
