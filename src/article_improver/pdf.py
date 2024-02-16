@@ -6,4 +6,4 @@ def read_pdf(filename: str) -> str:
         text = ""
         for page in doc:
             text += page.get_text()
-        return text
+        return text.strip()
