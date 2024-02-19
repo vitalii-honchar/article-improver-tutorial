@@ -10,10 +10,11 @@ def test_return_text_if_file_reading_was_successful():
     expected = "Test content"
 
     # WHEN
-    actual = pdf.read_pdf(filename)    
+    actual = pdf.read_pdf(filename)
 
     # THEN
     assert actual == expected
+
 
 def test_raise_exception_if_file_not_exists():
     # GIVEN
@@ -21,4 +22,4 @@ def test_raise_exception_if_file_not_exists():
 
     # WHEN-THEN
     with pytest.raises(fitz.FileNotFoundError):
-        pdf.read_pdf(filename)    
+        pdf.read_pdf(filename)

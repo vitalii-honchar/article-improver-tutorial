@@ -20,6 +20,7 @@ def exists_folder():
     yield folder
     shutil.rmtree(folder)
 
+
 @pytest.fixture(params=["not_exists_folder", "exists_folder"])
 def folder_fixture(request):
     if request.param == "not_exists_folder":
@@ -27,6 +28,7 @@ def folder_fixture(request):
     else:
         folder = request.getfixturevalue("exists_folder")
     yield folder
+
 
 @pytest.fixture
 def exists_file(exists_folder):
@@ -37,13 +39,14 @@ def exists_file(exists_folder):
     yield filename
     Path(f"{exists_folder}/{filename}").unlink(missing_ok=True)
 
+
 def test_create_file_if_folder_not_exists(monkeypatch, folder_fixture):
     # GIVEN
     filename = str(uuid4()) + ".yaml"
     token = str(uuid4())
     expected_file = f"{folder_fixture}/{filename}"
 
-    monkeypatch.setattr('builtins.input', lambda _: token)
+    monkeypatch.setattr("builtins.input", lambda _: token)
 
     # WHEN
     config_command.handle(filename, folder_fixture)
@@ -55,12 +58,13 @@ def test_create_file_if_folder_not_exists(monkeypatch, folder_fixture):
         config_json = yaml.safe_load(f)
         assert config_json["open_ai_key"] == token
 
+
 def test_rewrite_file_if_file_exists(monkeypatch, exists_file, exists_folder):
     # GIVEN
     token = str(uuid4())
     expected_file = f"{exists_folder}/{exists_file}"
 
-    monkeypatch.setattr('builtins.input', lambda _: token)
+    monkeypatch.setattr("builtins.input", lambda _: token)
 
     # WHEN
     config_command.handle(exists_file, exists_folder)

@@ -28,7 +28,9 @@ def _read_config(config_file_folder: str, config_file: str) -> Config:
         return Config(config_json[FIELD_OPEN_AI_KEY])
 
 
-def init(config_file_folder: str=None, config_file: str=None) -> tuple[Config, asyncio.AbstractEventLoop]:
+def init(
+    config_file_folder: str = None, config_file: str = None
+) -> tuple[Config, asyncio.AbstractEventLoop]:
     logger.remove()
     logger.add(sys.stderr, format="{message}", level="INFO")
     try:

@@ -11,6 +11,7 @@ cfg, loop = config.init()
 if cfg is not None:
     chat_gpt = ChatGpt(AsyncOpenAI(api_key=cfg.open_ai_key))
 
+
 def execute_chat_gpt_command(description, fn):
     if cfg is None:
         configure_command()
@@ -32,9 +33,11 @@ def seo_command(filename: str):
 
     execute_chat_gpt_command("Generating seo recommendations...", cmd)
 
+
 @app.command(name="configure")
 def configure_command():
     config_command.handle(config.DEFAULT_CONFIG_FILE, config.DEFAULT_CONFIG_FILE_FOLDER)
+
 
 if __name__ == "__main__":
     app()
