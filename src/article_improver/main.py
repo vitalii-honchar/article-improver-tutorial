@@ -1,9 +1,14 @@
 import typer
 from article_improver import config
+from article_improver.chat_gpt import ChatGpt
 from article_improver.command import config_command
+from openai import AsyncOpenAI
 
-cfg, loop = config.init()
 app = typer.Typer()
+cfg, loop = config.init()
+
+if cfg is not None:
+    chat_gpt = ChatGpt(AsyncOpenAI(api_key=cfg.open_ai_key))
 
 @app.command(name="seo")
 def seo_command():
